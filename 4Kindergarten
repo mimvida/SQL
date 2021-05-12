@@ -1,0 +1,28 @@
+drop database if exists kindergarten;
+create database kindergarten;
+use kindergarten;
+
+create table kindergarten (
+    code int not null primary key auto_increment,
+    grp int not null,
+    tutor int not null
+);
+
+create table grp (
+    code int not null primary key auto_increment,
+    name varchar(50) not null,
+    totalnumber int not NULL,
+    tutor int not null
+);
+
+create table tutor (
+    code int not null primary key auto_increment,
+    name varchar(50) not null,
+    iban varchar(32),
+    qualification varchar(5)
+);
+
+alter table kindergarten add foreign key (tutor) references tutor (code);
+alter table kindergarten add foreign key (grp) references grp (code);
+
+alter table grp add foreign key (tutor) references tutor (code);
