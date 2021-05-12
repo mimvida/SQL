@@ -23,7 +23,7 @@ insert into zupanija (naziv,zupan) values
 insert into opcina (zupanija,naziv) values
 (1,'Osijek'),
 (1,'Bilje'),
-(2,'Sisak'),
+(2,'Velika Gorica'),
 (2,'Zapresic'),
 (3,'Pula'),
 (3,'Pazin');
