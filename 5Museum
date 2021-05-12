@@ -1,0 +1,37 @@
+drop database if exists museum;
+create database museum;
+use museum;
+
+create table museum (
+    code int not null primary key auto_increment,
+    exhibition int not null,
+    parking boolean,
+    startdate datetime,
+    curator int not null
+);
+
+create table exhibition (
+    code int not null primary key auto_increment,
+    name varchar(50) not null,
+    curator int not null,
+    sponsor int not null
+);
+
+create table curator (
+    code int not null primary key auto_increment,
+    name varchar(50) not null,
+    exhibition int not null
+);
+
+create table sponsor (
+    code int not null primary key auto_increment,
+    name varchar(50) not null,
+    email varchar(20),
+    exhibition int not null
+);
+
+alter table museum add foreign key (exhibition) references exhibition (code);
+alter table museum add foreign key (curator) references curator (code);
+
+alter table exhibition add foreign key (sponsor) references sponsor (code);
+alter table exhibition add foreign key (curator) references curator (code);
