@@ -1,0 +1,36 @@
+drop database if exists beautysalon;
+create database beautysalon;
+use beautysalon;
+
+create table salon (
+    code int not null primary key auto_increment,
+    employee int not null,
+    service int not null
+);
+
+create table employee (
+    code int not null primary key auto_increment,
+    name varchar(50) not null,
+    iban varchar(32),
+    user int not null
+);
+
+create table user (
+    code int not null primary key auto_increment,
+    name varchar(50) not null,
+    email varchar(20),
+    service int
+);
+
+create table service (
+    code int not null primary key auto_increment,
+    name varchar(50) not null,
+    price decimal(18,2)
+);
+
+alter table salon add foreign key (service) references service (code);
+alter table salon add foreign key (employee) references employee (code);
+
+alter table user add foreign key (service) references service (code);
+
+alter table employee add foreign key (user) references user (code);
