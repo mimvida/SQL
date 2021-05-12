@@ -1,0 +1,31 @@
+drop database if exists monastery;
+create database monastery;
+use monastery;
+
+create table priest (
+    code int not null primary key auto_increment,
+    name varchar(50) not null,
+    task int not null,
+    superior int not null,
+    language varchar(20)
+);
+
+create table task (
+    code int not null primary key auto_increment,
+    name varchar(50) not null,
+    priest int not null,
+    duration int,
+    assistanceneeded boolean
+);
+
+create table superior (
+    code int not null primary key auto_increment,
+    name varchar(50) not null,
+    language varchar(20)
+);
+
+alter table priest add foreign key (task) references task (code);
+alter table priest add foreign key (superior) references superior (code);
+
+
+alter table task add foreign key (priest) references priest (code);
