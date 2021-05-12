@@ -1,0 +1,37 @@
+drop database if exists animalprotectionassociation;
+create database animalprotectionassociation;
+use animalprotectionassociation;
+
+create table association (
+    code int not null primary key auto_increment,
+    employee int not null,
+    place int not null
+);
+
+create table employee (
+    code int not null primary key auto_increment,
+    name varchar(50) not null,
+    iban varchar(32),
+    animal int not null
+);
+
+create table animal (
+    code int not null primary key auto_increment,
+    name varchar(50) not null,
+    specie varchar(20),
+    place int,
+    vaccinated boolean
+);
+
+create table place (
+    code int not null primary key auto_increment,
+    name varchar(50) not null,
+    area decimal(2,2)
+);
+
+alter table association add foreign key (place) references place (code);
+alter table association add foreign key (employee) references employee (code);
+
+alter table animal add foreign key (place) references place (code);
+
+alter table employee add foreign key (animal) references animal (code);
